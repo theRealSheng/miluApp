@@ -4,16 +4,20 @@ import {
 } from '../../utils';
 import { KEYS, STRINGS } from '../../constants';
 import {
-  FETCH_ALL_MOVIES_REQUESTED,
-  FETCH_ALL_MOVIES_SUCCESSED,
-  FETCH_ALL_MOVIES_FAILED
+  FETCH_MOVIES_REQUESTED,
+  FETCH_MOVIES_SUCCEEDED,
+  FETCH_MOVIES_FAILED
 } from './types';
 
-export const fetchAllMoviesRequested = () => async (dispatch) => {
-  dispatch({ type: FETCH_ALL_MOVIES_REQUESTED })
+// fetching TV here for simplicity
+import { fetchTvsRequested } from '../tvs';
+
+export const fetchMoviesRequested = () => async (dispatch) => {
+  dispatch(fetchTvsRequested());
+  dispatch({ type: FETCH_MOVIES_REQUESTED })
   // Fetch all movie genres
   const movieGenreList = await generateApiActionRespose(
-    FETCH_ALL_MOVIES_FAILED,
+    FETCH_MOVIES_FAILED,
     `${STRINGS.MovieGenre}${KEYS.API_KEY}${STRINGS.GenreZone}`,
     dispatch
   );
@@ -22,16 +26,16 @@ export const fetchAllMoviesRequested = () => async (dispatch) => {
   const genresMoviesHash = createHashById(movieGenreList.genres);
 
   // Store the movie list by genre
-  let listByGenres = {};
+  let movieListByGenres = {};
 
   // Get popular movie list
   const popularMovieListResponse = await generateApiActionRespose(
-    FETCH_ALL_MOVIES_FAILED,
+    FETCH_MOVIES_FAILED,
     `${STRINGS.PopularMovie}${KEYS.API_KEY}${STRINGS.PopularZone}`
   );
 
   if (popularMovieListResponse && popularMovieListResponse.results) {
-    listByGenres = {
+    movieListByGenres = {
       popular: popularMovieListResponse.results
     }
   }
@@ -41,13 +45,13 @@ export const fetchAllMoviesRequested = () => async (dispatch) => {
       if (!movieGenre.id) return;
   
       let responseData = await generateApiActionRespose(
-        FETCH_ALL_MOVIES_FAILED,
+        FETCH_MOVIES_FAILED,
         `${STRINGS.DicoverMovie}${KEYS.API_KEY}${STRINGS.GenreZone}${STRINGS.GenreBridge}${movieGenre.id}`
       )
 
       if (responseData && responseData.results) {
-        listByGenres = {
-          ...listByGenres,
+        movieListByGenres = {
+          ...movieListByGenres,
           [movieGenre.name]: responseData.results
         }
       }
@@ -56,13 +60,13 @@ export const fetchAllMoviesRequested = () => async (dispatch) => {
 
   if (ready) {
     const payload = {
-      listByGenres,
+      movieListByGenres,
       genresMoviesHash,
       loading: false,
       error: null
     }
 
     
-    dispatch({ type: FETCH_ALL_MOVIES_SUCCESSED, payload })
+    dispatch({ type: FETCH_MOVIES_SUCCEEDED, payload })
   }
 }

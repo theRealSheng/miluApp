@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+
 import { DefaultTouchable } from '../../DefaultTouchable';
 import ArrowLeftIcon from '../../../assets/svg/arrow_left.svg';
 

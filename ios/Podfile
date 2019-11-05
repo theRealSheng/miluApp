@@ -38,6 +38,10 @@ target 'miluApp' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
+
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'miluAppTests' do
     inherit! :search_paths
     # Pods for testing

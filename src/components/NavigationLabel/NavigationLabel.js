@@ -6,9 +6,7 @@ import { COLORS } from '../../constants';
 const NavigationLabel = ({ active, navigation }) => {
   const { routeName, routes } = navigation.state;
   const textStyle = (routes.length > 1 || !active) ? { ...styles.selected, ...styles.standBy } : styles.selected;
-
   if (!routeName) return null;
-
   return <Text style={textStyle}>{routeName}</Text>;
 };
 
@@ -17,7 +15,7 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     textAlign: 'center',
     fontSize: 10,
-    fontWeight: '600',
+    fontWeight: 'bold',
     paddingBottom: 5,
     fontWeight: 'bold'
   },

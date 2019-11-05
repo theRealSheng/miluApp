@@ -22,6 +22,6 @@ const DefaultShowCard = ({ show, onPress }) => (
       </View>
     )}
   />
-)
+);
 
 export { DefaultShowCard };

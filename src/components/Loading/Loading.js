@@ -1,6 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+
 import { COLORS } from '../../constants';
+import { SETTINGS } from '../../utils';
 
 const Loading = () => (
   <View style={styles.container}>
@@ -11,15 +13,15 @@ const Loading = () => (
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: SETTINGS.W_Height,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   loading: {
     fontSize: 25,
     fontWeight: 'bold',
     color: COLORS.white,
   }
-})
+});
 
 export { Loading };

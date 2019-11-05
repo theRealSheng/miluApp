@@ -1,11 +1,11 @@
 import {
-  FETCH_ALL_MOVIES_REQUESTED,
-  FETCH_ALL_MOVIES_SUCCESSED,
-  FETCH_ALL_MOVIES_FAILED
+  FETCH_MOVIES_REQUESTED,
+  FETCH_MOVIES_SUCCEEDED,
+  FETCH_MOVIES_FAILED
 } from './types';
 
 const initialState = {
-  listByGenres: {},
+  movieListByGenres: {},
   genresMoviesHash: {},
   loading: false,
   error: null
@@ -13,20 +13,20 @@ const initialState = {
 
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ALL_MOVIES_REQUESTED: {
+    case FETCH_MOVIES_REQUESTED: {
       return {
         ...state,
         loading: true,
         error: null
       }
     }
-    case FETCH_ALL_MOVIES_SUCCESSED: {
+    case FETCH_MOVIES_SUCCEEDED: {
       return {
         ...state,
         ...action.payload
       }
     }
-    case FETCH_ALL_MOVIES_FAILED: {
+    case FETCH_MOVIES_FAILED: {
       return {
         ...state,
         loading: false,

@@ -21,7 +21,7 @@ const renderPoster = (show) => (
       {renderGenres(show.genre_ids)}
     </Text>
   </View>
-)
+);
 
 const MainShowCard = ({ show }) => {
   if(!show) return null;
@@ -31,7 +31,8 @@ const MainShowCard = ({ show }) => {
     <View style={styles.card}>
       {renderPoster(show)}
     </View>
-  </View>
-);}
+  </View> 
+  );
+};
 
 export { MainShowCard };

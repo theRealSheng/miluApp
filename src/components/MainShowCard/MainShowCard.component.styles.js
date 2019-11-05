@@ -26,4 +26,4 @@ export default StyleSheet.create({
     alignItems: 'center',
     flex: 1
   },  
-})
+});

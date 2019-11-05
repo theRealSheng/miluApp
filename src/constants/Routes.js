@@ -4,8 +4,10 @@ const ROUTES = {
   ComingSoon: 'Coming Soon',
   Download: 'Downloads',
   More: 'More',
+  DetailScreen: 'DetailScreen',
   MainScreen: 'MainScreen',
-  DetailScreen: 'DetailScreen'
+  SearchScreen: 'SearchScreen',
+
 };
 
 export default ROUTES;

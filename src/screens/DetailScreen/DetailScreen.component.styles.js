@@ -10,7 +10,7 @@ export default StyleSheet.create({
   heading_wrapper: {
     flexDirection: 'row',
     zIndex: 100,
-    top: 20,
+    top: 50,
     paddingLeft: 20,
     position: 'absolute',
   },

@@ -4,7 +4,6 @@ import { COLORS } from '../../constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.main
   },
   no_photo: {
     flex: 1,

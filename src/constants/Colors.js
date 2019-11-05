@@ -1,8 +1,8 @@
 const COLORS = {
   main: '#000000',
   secondary: '#112C45',
-  Ok: '#A6D27A',
-  KO: '#CB2323',
+  ok: '#A6D27A',
+  ko: '#CB2323',
   gold: '#f1c40f',
   white: '#FFFFFF',
   dark_grey: '#333333',

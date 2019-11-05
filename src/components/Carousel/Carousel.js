@@ -3,7 +3,9 @@ import { Text, ScrollView, StyleSheet, View } from 'react-native';
 
 const Carousel = ({ heading, list }) => (
   <View style={styles.container}>
-    <Text style={styles.heading}>{`${heading.charAt(0).toUpperCase()}${heading.slice(1).toLowerCase()}`}</Text>
+    <Text style={styles.heading}>
+      {`${heading.charAt(0).toUpperCase()}${heading.slice(1).toLowerCase()}`}
+    </Text>
     <ScrollView horizontal style={styles.carousel}>
       {list}
     </ScrollView>

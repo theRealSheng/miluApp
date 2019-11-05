@@ -1,0 +1,1 @@
+export { ShowRating } from './ShowRating';

@@ -9,7 +9,7 @@ const checkPlatform = () => {
   }
 
   return <StatusBar backgroundColor={COLORS.black} barStyle="light-content" />
-}
+};
 
 const DefaultStatusBar = ({ props }) => (
   <View style={{ ...DIMENSIONS.statusBar }}>

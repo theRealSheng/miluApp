@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
 
-import { MainScreen } from '../screens/MainScreen';
 import { DetailScreen } from '../screens/DetailScreen';
+import { MainScreen } from '../screens/MainScreen';
 import { COLORS } from '../constants';
 import { SETTINGS } from '../utils';
 

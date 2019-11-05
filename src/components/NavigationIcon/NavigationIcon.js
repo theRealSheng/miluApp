@@ -29,7 +29,6 @@ const NavigationIcon = ({ active, navigation }) => {
       selected: Assets.icons['more_selected']
     },
   };
-
   let type = active && routes.length === 1? 'selected' : 'normal';
   return (
     <View style={styles.image_wrapper}>

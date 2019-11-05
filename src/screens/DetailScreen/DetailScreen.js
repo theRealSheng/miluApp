@@ -30,7 +30,7 @@ class DetailScreen extends Component {
     if (!show) {
       return <Loading />;
     }
-
+    
     const {
       poster_path,
       original_title,

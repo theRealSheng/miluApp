@@ -30,4 +30,4 @@ export default StyleSheet.create({
     width: 20,
     height: 20
   }
-})
+});
