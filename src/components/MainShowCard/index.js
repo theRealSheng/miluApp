@@ -1,0 +1,1 @@
+export { MainShowCard } from './MainShowCard';

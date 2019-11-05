@@ -1,50 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet } from 'react-native';
-import { SIZE, ROUTES } from 'constants';
+import { Image, StyleSheet, View } from 'react-native';
 
-import HomeIcon from '../../../assets/All_Icons/navigationBar/home.svg';
-import HomeIconSelected from '../../../assets/All_Icons/navigationBar/home_selected.svg';
-import BasketIcon from '../../../assets/All_Icons/navigationBar/basket.svg';
-import BasketIconSelected from '../../../assets/All_Icons/navigationBar/basket_selected.svg';
-import LocationSquare from '../../../assets/All_Icons/navigationBar/location_square.svg';
-import LocationSquareSelected from '../../../assets/All_Icons/navigationBar/location_square_selected.svg';
-import StarIcon from '../../../assets/All_Icons/navigationBar/star.svg';
-import StarIconSelected from '../../../assets/All_Icons/navigationBar/star_selected.svg';
+import Assets from '../../Assets';
+import { ROUTES } from '../../constants';
 
 const NavigationIcon = ({ active, navigation }) => {
   const { routeName , routes } = navigation.state;
   const routedictironary = {
-    [ROUTES.myProducts]: {
-      normal: <HomeIcon {...SIZE.square_25} style={styles.icon} />,
-      selected: <HomeIconSelected {...SIZE.square_25} style={styles.icon} />
+    [ROUTES.Home]: {
+      normal: Assets.icons['home'],
+      selected: Assets.icons['home_selected']
     },
-    [ROUTES.providers]: {
-      normal: <BasketIcon {...SIZE.square_25} style={styles.icon} />,
-      selected: <BasketIconSelected {...SIZE.square_25} style={styles.icon} />
+    [ROUTES.Search]: {
+      normal: Assets.icons['search'],
+      selected: Assets.icons['search_selected']
     },
-    [ROUTES.locations]: {
-      normal: <LocationSquare {...SIZE.square_20} style={styles.icon} />,
-      selected: <LocationSquareSelected {...SIZE.square_20} style={styles.icon} />,
+    [ROUTES.ComingSoon]: {
+      normal: Assets.icons['video'],
+      selected: Assets.icons['video_selected']
     },
-    [ROUTES.myOrders]: {
-      normal: <StarIcon {...SIZE.square_25} style={styles.icon} />,
-      selected: <StarIconSelected {...SIZE.square_25} style={styles.icon} />
-    }
+    [ROUTES.Download]: {
+      normal: Assets.icons['download'],
+      selected: Assets.icons['download_selected']
+    },
+    [ROUTES.More]: {
+      normal: Assets.icons['more'],
+      selected: Assets.icons['more_selected']
+    },
   };
 
   let type = active && routes.length === 1? 'selected' : 'normal';
-  return routedictironary[routeName][type];
+  return (
+    <View style={styles.image_wrapper}>
+      <Image source={routedictironary[routeName][type]} style={styles.icon}/>
+    </View>
+  )
 };
 
 const styles = StyleSheet.create({
-  option: {
-    flex: 1,
+  image_wrapper: {
     justifyContent: 'center',
+    flex: 1,
     alignItems: 'center'
   },
   icon: {
-    marginTop: 10
+    width: 20,
+    height: 20,
   }
 });
 

@@ -1,37 +1,30 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
-import { COLORS, FONTSIZE } from 'constants';
-import { TypoGraphyOpenSans } from 'components';
+import { Text, StyleSheet } from 'react-native';
+
+import { COLORS } from '../../constants';
 
 const NavigationLabel = ({ active, navigation }) => {
   const { routeName, routes } = navigation.state;
-  const textStyle = (routes.length > 1 || !active) ? { ...styles.main, ...styles.light } : styles.main;
+  const textStyle = (routes.length > 1 || !active) ? { ...styles.selected, ...styles.standBy } : styles.selected;
 
-  return routeName ?
-    <TypoGraphyOpenSans style={textStyle} text={routeName} />
-    :
-    <TypoGraphyOpenSans text={"..."} />;
+  if (!routeName) return null;
+
+  return <Text style={textStyle}>{routeName}</Text>;
 };
 
 const styles = StyleSheet.create({
-  main: {
-    color: COLORS.main,
+  selected: {
+    color: COLORS.white,
     textAlign: 'center',
-    ...FONTSIZE.extre_small,
+    fontSize: 10,
     fontWeight: '600',
     paddingBottom: 5,
-    paddingTop: 5
+    fontWeight: 'bold'
   },
-  light: {
-    color: COLORS.neutral_medium,
+  standBy: {
+    color: COLORS.nav,
     fontWeight: '300'
   }
 });
-
-NavigationLabel.propTypes = {
-  active: PropTypes.bool.isRequired,
-  navigation: PropTypes.object.isRequired
-};
 
 export { NavigationLabel };
