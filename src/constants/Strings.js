@@ -14,7 +14,7 @@ const STRINGS = {
   // Others
   RatingStar: 'star',
   Movies: 'Movies',
-  Tvs: 'Tvs'
-}
+  Tvs: 'Tvs',
+};
 
 export default STRINGS;

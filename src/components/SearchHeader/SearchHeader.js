@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {
   Keyboard,
   TextInput,
-  View
+  View,
 } from 'react-native';
 
-import { COLORS, ROUTES } from '../../constants';
+import { COLORS } from '../../constants';
 import styles from './SearchHeader.component.styles';
 import { DefaultTouchable, StandardLeftArrowIcon } from '..';
 import CloseIcon from '../../assets/svg/close.svg';
@@ -15,7 +15,7 @@ const SearchHeader = ({
   value,
   onChangeText,
   navigateBack,
-  clearInput
+  clearInput,
 }) => (
   <View style={styles.container}>
     <View>
@@ -25,8 +25,8 @@ const SearchHeader = ({
         onPress={() => navigateBack()}
       />
     </View>
-    <TextInput 
-      value={value} 
+    <TextInput
+      value={value}
       placeholder="Search..."
       placeholderTextColor={COLORS.medium_grey}
       onChangeText={onChangeText}
@@ -51,7 +51,7 @@ SearchHeader.propTypes = {
   value: PropTypes.string.isRequired,
   onChangeText: PropTypes.func.isRequired,
   navigateBack: PropTypes.func.isRequired,
-  clearInput: PropTypes.func.isRequired
+  clearInput: PropTypes.func.isRequired,
 };
 
-export { SearchHeader }
+export { SearchHeader };

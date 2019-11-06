@@ -13,7 +13,7 @@ import { SelectRating } from '../SelectRating';
 class SearchShowCard extends Component {
   state = {
     personalRate: {}, // Temporary save in component to just show the display
-    displayGeneralRating: true
+    displayGeneralRating: true,
   }
 
   renderRatingSection = (show) => {
@@ -30,8 +30,8 @@ class SearchShowCard extends Component {
               <DefaultTouchable
                 onPress={() => this.setState({ displayGeneralRating: false })}
                 item={(
-                  <Text style={userRatedShow? styles.rated_text: styles.rate_text}>
-                    {userRatedShow? "Rated!" : "Rate it"}
+                  <Text style={userRatedShow ? styles.rated_text : styles.rate_text}>
+                    {userRatedShow ? 'Rated!' : 'Rate it'}
                   </Text>
                 )}
               />
@@ -39,21 +39,21 @@ class SearchShowCard extends Component {
           </View>
         </View>
       )
-    } 
+    }
     return (
       <View style={styles.show_info_wrapper}>
         <View style={styles.select_rating_wrapper}>
-          <SelectRating 
-            personalRate={userRatedShow || 3} 
-            type={STRINGS.RatingStar} 
+          <SelectRating
+            personalRate={userRatedShow || 3}
+            type={STRINGS.RatingStar}
             onFinishRating={(num) => setTimeout(() => {
-              this.setState({ 
+              this.setState({
                   personalRate: {
                     ...personalRate,
-                    [show.id]: num
+                    [show.id]: num,
                   },
-                  displayGeneralRating: true
-              })
+                  displayGeneralRating: true,
+              });
             }, 500)}
           />
           <View style={styles.cancel_wrapper}>
@@ -64,38 +64,37 @@ class SearchShowCard extends Component {
           </View>
         </View>
       </View>
-    )
+    );
   }
-  
 
   render() {
-    const { show, onPressImage } = this.props;
+    const { show, onPressImg } = this.props;
     if (!show) {
       return null;
     }
     return (
       <View style={styles.card_container}>
         <DefaultTouchable
-          onPress={onPressImage}
+          onPress={onPressImg}
           item={(
             <View style={styles.image_wrapper}>
-              <DefaultImage 
+              <DefaultImage
                 imageUrl={show.poster_path}
                 imageStyle={styles.image}
               />
-              <Image source={ASSETS.icons['info']} style={styles.info_icon}/>
+              <Image source={ASSETS.icons['info']} style={styles.info_icon} />
             </View>
           )}
         />
         {this.renderRatingSection(show)}
       </View>
-    )
+    );
   }
-};
+}
 
 SearchShowCard.propTypes = {
   show: PropTypes.object.isRequired,
-  onPressImage: PropTypes.func.isRequired
+  onPressImg: PropTypes.func.isRequired,
 };
 
 export { SearchShowCard };

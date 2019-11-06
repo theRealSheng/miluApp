@@ -6,9 +6,9 @@ import { DefaultTouchable } from '../../DefaultTouchable';
 import ArrowLeftIcon from '../../../assets/svg/arrow_left.svg';
 
 const StandardLeftArrowIcon = ({
-  onPress, 
-  arrowSize, 
-  arrowWrapperStyles
+  onPress,
+  arrowSize,
+  arrowWrapperStyles,
 }) => (
   <DefaultTouchable
     onPress={() => onPress()}
@@ -23,7 +23,7 @@ const StandardLeftArrowIcon = ({
 StandardLeftArrowIcon.propTypes = {
   onPress: PropTypes.func.isRequired,
   arrowSize: PropTypes.object.isRequired,
-  arrowWrapperStyles: PropTypes.object.isRequired
+  arrowWrapperStyles: PropTypes.object.isRequired,
 }
 
 export { StandardLeftArrowIcon };

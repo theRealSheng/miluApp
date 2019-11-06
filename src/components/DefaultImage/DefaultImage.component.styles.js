@@ -9,10 +9,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   no_photo_image: {
     width: 30,
-    height: 30
-  }
-})
+    height: 30,
+  },
+});

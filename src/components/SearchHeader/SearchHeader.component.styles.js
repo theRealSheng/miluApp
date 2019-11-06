@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLORS,  } from '../../constants';
+import { COLORS } from '../../constants';
 
 export default StyleSheet.create({
   container: {
@@ -9,18 +9,18 @@ export default StyleSheet.create({
     alignItems: 'center',
     padding: 25,
     marginBottom: 20,
-    marginTop: 20
+    marginTop: 20,
   },
   icon_wrapper: {
     height: 40,
     width: 40,
     borderRadius: 40,
     marginRight: 30,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   arrow: {
     height: 25,
-    width: 25
+    width: 25,
   },
   input: {
     height: 40,
@@ -30,6 +30,6 @@ export default StyleSheet.create({
   },
   close: {
     height: 20,
-    width: 20
-  }
+    width: 20,
+  },
 });

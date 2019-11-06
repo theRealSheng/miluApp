@@ -1,48 +1,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, Text, View } from 'react-native';
+import {
+	ScrollView,
+	Text,
+	View,
+} from 'react-native';
 import { connect } from 'react-redux';
-import RNLocky from "react-native-scroll-locky";
+import RNLocky from 'react-native-scroll-locky';
 import Orientation from 'react-native-orientation-locker';
 
 import styles from './MainScreen.component.styles';
 import { SETTINGS } from '../../utils';
 import { DIMENSIONS, ROUTES, STRINGS } from '../../constants';
-import { 
+import {
 	Carousel,
 	DefaultTouchable,
 	DefaultShowCard,
 	DefaultStatusBar,
 	MainShowCard,
-	Loading
+	Loading,
 } from '../../components';
 import { fetchMoviesRequested } from '../../store/movies';
 
 class MainScreen extends Component {
 	constructor(props) {
-    super(props);
+		super(props);
 		this.state = {
 			display: undefined,
 			showHash: {},
-			showList: []
-		}
-    this.directionLockPanHandler = new RNLocky(
-      RNLocky.Direction.VERTICAL
+			showList: [],
+		};
+		this.directionLockPanHandler = new RNLocky(
+			RNLocky.Direction.VERTICAL,
 		);
 	}
 
 	componentDidMount() {
 		this.props.fetchMoviesRequested();
-    Orientation.lockToPortrait();
+		Orientation.lockToPortrait();
 	}
 
 	componentDidUpdate(prevProps) {
 		// Initialized data
 		// The proper way will be to fetch the data after log in or another page
-		const { movies,	tvs } = this.props;
+		const { movies } = this.props;
 		const { display } = this.state;
 		if (display === undefined && Object.values(movies).length > 0) {
-			return this.changeDisplay(STRINGS.Movies)
+			return this.changeDisplay(STRINGS.Movies);
 		}
 
 		if (prevProps !== this.props) {
@@ -62,125 +66,129 @@ class MainScreen extends Component {
 		return Object.keys(showList).map((genreKey) => {
 			counter++;
 			const list = showList[genreKey].map((show) => (
-				<DefaultShowCard 
-					key={counter % 0 === 0? `${show.title}${genreKey}`: `${show.poster_path}${show.overview}`} 
-					onPress={() => navigation.navigate(ROUTES.DetailScreen, { show: JSON.stringify(show) })}
-					show={show} />
+					// eslint-disable-next-line react/jsx-indent
+					<DefaultShowCard
+						key={counter % 0 === 0 ? `${show.title}${genreKey}` : `${show.poster_path}${show.overview}`}
+						onPress={() => navigation.navigate(ROUTES.DetailScreen, { show: JSON.stringify(show) })}
+						show={show}
+					/>
 				));
-			return (
-				<Carousel 
-					key={`${JSON.stringify(showList[genreKey])}${genreKey}${counter}`} 
-					heading={genreKey} 
-					list={list}
-				/>
-			)
-		})
+				return (
+					// eslint-disable-next-line react/jsx-indent
+					<Carousel
+						key={`${JSON.stringify(showList[genreKey])}${genreKey}${counter}`}
+						heading={genreKey}
+						list={list}
+					/>
+				);
+	  });
 	};
 
 	changeDisplay = (changeView) => {
-		const { display, showList } = this.state;
-		const { 
-			movies, 
-			genresMoviesHash,
-			tvs,
-			genresTvsHash
-		} = this.props;
-		if (changeView === display) return;
-		if (changeView === STRINGS.Movies && showList !== movies) {
-			this.setState({
-				display: STRINGS.Movies,
-				showHash: genresMoviesHash,
-				showList: movies
-			})
-		} else if (changeView === STRINGS.Tvs && showList !== tvs) {
-			this.setState({
-				display: STRINGS.Tvs,
-				showHash: genresTvsHash,
-				showList: tvs
-			})
-		} 
+	  const { display, showList } = this.state;
+	  const {
+	    movies,
+	    genresMoviesHash,
+	    tvs,
+	    genresTvsHash,
+	  } = this.props;
+
+	  if (changeView === display) return;
+
+	  if (changeView === STRINGS.Movies && showList !== movies) {
+	    this.setState({
+	      display: STRINGS.Movies,
+	      showHash: genresMoviesHash,
+	      showList: movies,
+	    });
+	  } else if (changeView === STRINGS.Tvs && showList !== tvs) {
+	    this.setState({
+	      display: STRINGS.Tvs,
+	      showHash: genresTvsHash,
+	      showList: tvs,
+	    });
+	  }
 	}
 
 	renderHeading = () => {
-		const { display } = this.state;
-		const movieStyle = display === STRINGS.Movies? styles.highlight_heading : styles.heading;
-		const tvStyle = display === STRINGS.Tvs? styles.highlight_heading : styles.heading;
-		return (
+	  const { display } = this.state;
+	  const movieStyle = display === STRINGS.Movies ? styles.highlight_heading : styles.heading;
+	  const tvStyle = display === STRINGS.Tvs ? styles.highlight_heading : styles.heading;
+	  return (
 			<View style={styles.heading_container}>
-					<DefaultTouchable
-						onPress={() => this.changeDisplay(STRINGS.Movies)}
-						item={(
-							<View style={styles.header_section}>
-								<Text style={movieStyle}>Movies</Text>
-							</View>
-						)}
-					/>
-					<DefaultTouchable
-						onPress={() => this.changeDisplay(STRINGS.Tvs)}
-						item={(
+				<DefaultTouchable
+					onPress={() => this.changeDisplay(STRINGS.Movies)}
+					item={(
+						<View style={styles.header_section}>
+							<Text style={movieStyle}>Movies</Text>
+						</View>
+					)}
+				/>
+				<DefaultTouchable
+					onPress={() => this.changeDisplay(STRINGS.Tvs)}
+					item={(
 						<View style={styles.header_section}>
 							<Text style={tvStyle}>On Tv</Text>
 						</View>
-						)}
-					/>
+					)}
+				/>
 			</View>
-		)
+	  );
 	}
-	
+
 	renderView = () => {
-		const { error, loading, navigation } = this.props;
 		const { showHash, showList } = this.state;
+	  const {
+			error,
+			loading,
+			navigation,
+		} = this.props;
 
-		if (error) {
-			return <Text>Error</Text>;
-		}
-		
-		if (loading || !showList) {
-			return <Loading />;
-		}
+	  if (error) return <Text>Error</Text>;
 
-		if (!loading && !showList && !error) {
-			return <Text>Sorry, an error has occurred. Please close the app and try again.</Text>;
-		}
+	  if (loading || !showList || this.state.loading)	return <Loading />;
 
-		let mostPopularShow = showList.popular? {...showList.popular[0]} : undefined;
+	  if (!loading && !showList && !error) {
+	    return <Text>Sorry, an error has occurred. Please close the app and try again.</Text>;
+	  }
 
-		if (mostPopularShow) {
-			if (mostPopularShow.genre_ids.length > 3) {
-				let displayGenereList = mostPopularShow.genre_ids.slice(0,3);
-				mostPopularShow.genre_ids = displayGenereList.map((genreId) => showHash[genreId]);
-			} else {
-				mostPopularShow.genre_ids = mostPopularShow.genre_ids.map((genreId) => showHash[genreId]);
-			}
-		}
+	  const mostPopularShow = showList.popular ? { ...showList.popular[0] } : undefined;
+	  if (mostPopularShow) {
+	    if (mostPopularShow.genre_ids.length > 3) {
+	      const displayGenereList = mostPopularShow.genre_ids.slice(0, 3);
+	      mostPopularShow.genre_ids = displayGenereList.map((genreId) => showHash[genreId]);
+	    } else {
+	      mostPopularShow.genre_ids = mostPopularShow.genre_ids.map((genreId) => showHash[genreId]);
+	    }
+	  }
+		const showParams = mostPopularShow ? JSON.stringify(mostPopularShow) : '';
 
-		return (
+	  return (
 			<View style={styles.fill_space}>
-				<MainShowCard 
-					show={mostPopularShow} 
-					onPress={() => navigation.navigate(ROUTES.DetailScreen, { show: JSON.stringify(showList.popular[0]) })}
+				<MainShowCard
+					show={mostPopularShow}
+					onPress={() => navigation.navigate(ROUTES.DetailScreen, { show: showParams })}
 					OnPressPlay={() => navigation.navigate(ROUTES.VideoScreen)}
 				/>
 				{this.renderHeading()}
 				{this.renderListByGenre()}
-      </View>
-		)
+			</View>
+	  );
 	}
 
-	renderStatusBar = () => !DIMENSIONS || !SETTINGS? null : <DefaultStatusBar />;
-	
+	renderStatusBar = () => {
+		if (!DIMENSIONS || !SETTINGS) return null;
+		return <DefaultStatusBar />;
+	};
+
 	render() {
-		return (
+	  return (
 			<ScrollView {...this.directionLockPanHandler.getPanHandlers()} style={styles.fill_space}>
 				{this.renderStatusBar()}
 				{this.renderView()}
 			</ScrollView>
-		)
+	  );
 	}
-}
-
-MainScreen.defaultProps = {
-	styles
 }
 
 MainScreen.propTypes = {
@@ -188,9 +196,11 @@ MainScreen.propTypes = {
 	tvs: PropTypes.object.isRequired,
 	genresMoviesHash: PropTypes.object.isRequired,
 	genresTvsHash: PropTypes.object.isRequired,
-	loading: PropTypes.boolean,
+	fetchMoviesRequested: PropTypes.func.isRequired,
+	navigation: PropTypes.object.isRequired,
+	loading: PropTypes.bool.isRequired,
 	error: PropTypes.string,
-}
+};
 
 const mapStateToProps = (state) => {
 	return {
@@ -200,13 +210,14 @@ const mapStateToProps = (state) => {
 		genresTvsHash: state.tvs.genresTvHash,
 		loading: (state.movies.loading || state.tvs.loading),
 		error: state.movies.error || state.tvs.error,
-	}
-}
+	};
+};
 
 const mapDispatchToProps = {
-	fetchMoviesRequested
-}
+	fetchMoviesRequested,
+};
 
+// eslint-disable-next-line no-class-assign
 MainScreen = connect(mapStateToProps, mapDispatchToProps)(MainScreen);
 
 export { MainScreen };

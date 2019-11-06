@@ -7,7 +7,7 @@ const ROUTES = {
   DetailScreen: 'DetailScreen',
   MainScreen: 'MainScreen',
   SearchScreen: 'SearchScreen',
-  VideoScreen: 'VideoScreen'
+  VideoScreen: 'VideoScreen',
 };
 
 export default ROUTES;

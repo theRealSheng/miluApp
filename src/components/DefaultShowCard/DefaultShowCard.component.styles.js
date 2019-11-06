@@ -10,7 +10,7 @@ export default StyleSheet.create({
   image: {
     resizeMode: 'cover',
     flex: 1,
-    marginBottom: 3
+    marginBottom: 3,
   },
   info_wrapper: {
     flexDirection: 'row',
@@ -19,15 +19,15 @@ export default StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderColor: COLORS.gold,
-    borderWidth: .5,
-    height: 25
+    borderWidth: 0.5,
+    height: 25,
   },
   rating: {
     color: COLORS.white,
-    fontSize: 12
+    fontSize: 12,
   },
   info_icon: {
     width: 20,
-    height: 20
-  }
+    height: 20,
+  },
 });

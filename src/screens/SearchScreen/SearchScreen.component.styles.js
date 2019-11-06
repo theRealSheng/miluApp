@@ -11,6 +11,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     color: COLORS.white,
     fontSize: 20,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

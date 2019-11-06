@@ -1,5 +1,11 @@
 import React from 'react';
-import { Text, ScrollView, StyleSheet, View } from 'react-native';
+import { PropTypes } from 'prop-types';
+import {
+  Text,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 const Carousel = ({ heading, list }) => (
   <View style={styles.container}>
@@ -12,6 +18,11 @@ const Carousel = ({ heading, list }) => (
   </View>
 );
 
+Carousel.propTypes = {
+  heading: PropTypes.string.isRequired,
+  list: PropTypes.array.isRequired,
+};
+
 const styles = StyleSheet.create({
   container: {
     height: 200,
@@ -22,11 +33,11 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 16,
     color: 'white',
-    marginBottom: 10
+    marginBottom: 10,
   },
   carousel: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export { Carousel };

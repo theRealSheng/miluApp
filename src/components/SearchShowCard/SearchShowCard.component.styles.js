@@ -10,56 +10,56 @@ export default StyleSheet.create({
     color: COLORS.gold,
     fontSize: 15,
     fontWeight: 'bold',
-    marginBottom: 5
+    marginBottom: 5,
   },
   overview: {
     color: COLORS.white,
-    fontSize: 13
+    fontSize: 13,
   },
   rating_wrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   rated_text: {
     color: COLORS.ok,
   },
   rate_text: {
     color: COLORS.ko,
-    paddingRight: 10
+    paddingRight: 10,
   },
   select_rating_wrapper: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
   cancel_wrapper: {
     height: 40,
-    paddingTop: 5
+    paddingTop: 5,
   },
   cancel: {
     color: COLORS.ko,
     paddingRight: 10,
-    fontSize: 16
+    fontSize: 16,
   },
   card_container: {
     flexDirection: 'row',
     height: 140,
     width: '100%',
     backgroundColor: COLORS.secondary,
-    margin: 5
+    margin: 5,
   },
   image_wrapper: {
     width: 80,
-    height: '100%'
+    height: '100%',
   },
   image: {
     flex: 1,
     resizeMode: 'cover',
   },
   info_icon: {
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     left: 5,
     width: 15,
-    height: 15
-  }
+    height: 15,
+  },
 });

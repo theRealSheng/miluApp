@@ -5,13 +5,13 @@ import { SETTINGS } from '../../utils';
 
 const checkPlatform = () => {
   if (SETTINGS.isIOS) {
-    return <StatusBar barStyle="light-content" />
+    return <StatusBar barStyle="light-content" />;
   }
 
-  return <StatusBar backgroundColor={COLORS.black} barStyle="light-content" />
+  return <StatusBar backgroundColor={COLORS.black} barStyle="light-content" />;
 };
 
-const DefaultStatusBar = ({ props }) => (
+const DefaultStatusBar = () => (
   <View style={{ ...DIMENSIONS.statusBar }}>
     {checkPlatform()}
   </View>

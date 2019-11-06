@@ -1,4 +1,4 @@
-import { Platform }from 'react-native';
+import { Platform } from 'react-native';
 
 const DIMENSIONS = {
   statusBar: {
@@ -8,13 +8,13 @@ const DIMENSIONS = {
       },
       android: {
         height: 30,
-        color: 'red'
-      }
-    })
+        color: 'red',
+      },
+    }),
   },
   bottomNavHeight: {
-    height: 60
-  }
-}
+    height: 60,
+  },
+};
 
 export default DIMENSIONS;

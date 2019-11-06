@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image, Text, View } from 'react-native';
 
 import ASSETS from '../../Assets';
@@ -17,11 +18,16 @@ const DefaultShowCard = ({ show, onPress }) => (
         />
         <View style={styles.info_wrapper}>
           <Text style={styles.rating}>{show.vote_average}</Text>
-          <Image source={ASSETS.icons['info']} style={styles.info_icon}/>
+          <Image source={ASSETS.icons['info']} style={styles.info_icon} />
         </View>
       </View>
     )}
   />
 );
+
+DefaultShowCard.propTypes = {
+  show: PropTypes.object.isRequired,
+  onPress: PropTypes.func.isRequired,
+};
 
 export { DefaultShowCard };

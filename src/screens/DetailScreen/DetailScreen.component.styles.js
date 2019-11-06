@@ -3,6 +3,9 @@ import { COLORS, DIMENSIONS } from '../../constants';
 import { SETTINGS } from '../../utils';
 
 export default StyleSheet.create({
+  fill_space: {
+    flex: 1,
+  },
   container: {
     height: SETTINGS.W_Height - DIMENSIONS.bottomNavHeight.height,
     width: SETTINGS.W_Width,
@@ -25,7 +28,7 @@ export default StyleSheet.create({
   },
   image: {
     flex: 1,
-    backgroundColor: COLORS.main
+    backgroundColor: COLORS.main,
   },
   touchable_wrapper: {
     position: 'absolute',
@@ -44,33 +47,33 @@ export default StyleSheet.create({
       ios: {
         shadowColor: COLORS.neutral_dark,
         shadowOffset: { width: 1, height: 1 },
-        shadowOpacity: .2,
+        shadowOpacity: 0.2,
         shadowRadius: 3,
       },
       android: {
         elevation: 3,
       },
-    })
+    }),
   },
   icon: {
     height: 30,
     width: 30,
-    marginLeft: 7
+    marginLeft: 7,
   },
   show_wrapper: {
     padding: 20,
-    paddingTop: 25
+    paddingTop: 25,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 15,
-    color: COLORS.gold
+    color: COLORS.gold,
   },
   overview: {
     fontSize: 15,
     fontWeight: '400',
     marginBottom: 15,
-    color: COLORS.white
-  }
+    color: COLORS.white,
+  },
 });

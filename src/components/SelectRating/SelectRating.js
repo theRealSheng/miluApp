@@ -6,7 +6,7 @@ import { COLORS } from '../../constants';
 const SelectRating = ({ personalRate, onFinishRating }) => (
   <AirbnbRating
     count={5}
-    reviews={["Terrible", "Bad", "OK", "Amazing", "Unbelievable"]}
+    reviews={['Terrible', 'Bad', 'OK', 'Amazing', 'Unbelievable']}
     selectedColor={COLORS.gold}
     tintColor={COLORS.secondary}
     imageSize={10}
@@ -19,7 +19,7 @@ const SelectRating = ({ personalRate, onFinishRating }) => (
 
 SelectRating.propTypes = {
   personalRate: PropTypes.number.isRequired,
-  onFinishRating: PropTypes.func.isRequired
+  onFinishRating: PropTypes.func.isRequired,
 };
 
 export { SelectRating };

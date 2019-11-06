@@ -6,21 +6,21 @@ import { VideoScreen } from '../screens/VideoScreen';
 import { COLORS } from '../constants';
 import { SETTINGS } from '../utils';
 
-export default HomeScreenStack = createStackNavigator({
+export default createStackNavigator({
   MainScreen: {
     screen: MainScreen,
-    ...SETTINGS.screenNavOptions
+    ...SETTINGS.screenNavOptions,
   },
   DetailScreen: {
     screen: DetailScreen,
-    ...SETTINGS.screenNavOptions
+    ...SETTINGS.screenNavOptions,
   },
   VideoScreen: {
     screen: VideoScreen,
-    ...SETTINGS.screenNavOptions
-  }
-  }, 
+    ...SETTINGS.screenNavOptions,
+  },
+  },
   {
     cardStyle: { backgroundColor: COLORS.black },
-  }
-)
+  },
+);

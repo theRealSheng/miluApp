@@ -8,18 +8,18 @@ export default StyleSheet.create({
     zIndex: 1000,
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   error: {
     fontSize: 25,
     textAlign: 'center',
     width: 120,
-    color: COLORS.white
+    color: COLORS.white,
   },
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   backgroundVideo: {
     position: 'absolute',
@@ -29,6 +29,6 @@ export default StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    flex: 1
+    flex: 1,
   },
 });

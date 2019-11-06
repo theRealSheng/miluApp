@@ -17,16 +17,17 @@ const renderImage = (imageUrl, imageStyle) => (
 );
 
 const DefaultImage = ({ imageUrl, imageStyle }) => {
-  const backgroundStyle = imageUrl? styles.container : styles.no_photo;
+  const backgroundStyle = imageUrl ? styles.container : styles.no_photo;
   return (
     <View style={backgroundStyle}>
-      {imageUrl? renderImage(imageUrl, imageStyle ) : renderNoPhoto()}
+      {imageUrl ? renderImage(imageUrl, imageStyle) : renderNoPhoto()}
     </View>
-  )
+  );
 };
 
 DefaultImage.propTypes = {
-  imageStyle: PropTypes.object.isRequired
+  imageUrl: PropTypes.string,
+  imageStyle: PropTypes.object.isRequired,
 };
 
 export { DefaultImage };

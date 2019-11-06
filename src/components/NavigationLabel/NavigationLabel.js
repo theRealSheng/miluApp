@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
 
 import { COLORS } from '../../constants';
@@ -17,12 +18,16 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: 'bold',
     paddingBottom: 5,
-    fontWeight: 'bold'
   },
   standBy: {
     color: COLORS.nav,
-    fontWeight: '300'
-  }
+    fontWeight: '300',
+  },
 });
+
+NavigationLabel.propTypes = {
+  active: PropType.bool.isRequired,
+  navigation: PropType.object.isRequired,
+};
 
 export { NavigationLabel };

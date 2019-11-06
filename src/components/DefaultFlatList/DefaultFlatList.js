@@ -4,10 +4,10 @@ import { View, FlatList } from 'react-native';
 
 class DefaultFlatList extends Component {
   render() {
-    const { 
-      renderFlatListItem, 
+    const {
+      renderFlatListItem,
       data,
-      extraProps
+      extraProps,
     } = this.props;
     return (
       <View>
@@ -20,14 +20,14 @@ class DefaultFlatList extends Component {
           {...extraProps}
         />
       </View>
-    )
+    );
   }
-};
+}
 
 DefaultFlatList.propTypes = {
   data: PropTypes.array.isRequired,
   renderFlatListItem: PropTypes.func.isRequired,
-  extraProps: PropTypes.object
+  extraProps: PropTypes.object,
 };
 
 export { DefaultFlatList };

@@ -4,17 +4,17 @@ import { ScrollView, Text, View } from 'react-native';
 
 import styles from './DetailScreen.component.styles';
 import { ROUTES } from '../../constants';
-import { 
-  DefaultImage, 
+import {
+  DefaultImage,
   DefaultTouchable,
   Loading,
-  StandardLeftArrowIcon
+  StandardLeftArrowIcon,
 } from '../../components';
 import PlayIcon from '../../assets/svg/play_arrow.svg';
 
 class DetailScreen extends Component {
   state = {
-    show: undefined
+    show: undefined,
   }
 
   componentDidMount() {
@@ -26,62 +26,56 @@ class DetailScreen extends Component {
 
   render() {
     const { show } = this.state;
-    const { styles, navigation } = this.props;
+    const { navigation } = this.props;
 
     if (!show) {
       return <Loading />;
     }
-    
+
     const {
       poster_path,
       original_title,
-      overview
+      overview,
     } = show;
 
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={styles.fill_space}>
         <View style={styles.container}>
-            <View style={styles.heading_wrapper}>
-              <StandardLeftArrowIcon
-                arrowSize={styles.icon}
-                arrowWrapperStyles={styles.icon_wrapper}
-                onPress={() => navigation.goBack()}
-              />
-            </View>
-            <View style={styles.image_wrapper}>
-              <DefaultImage
-                imageUrl={poster_path}
-                imageStyle={styles.image}
-              />
-            </View>
-            <View style={styles.touchable_wrapper}>
-              <DefaultTouchable
-                onPress={() => navigation.navigate(ROUTES.VideoScreen)}
-                item={(
-                  <View style={styles.play_icon_wrapper}>
-                    <PlayIcon {...styles.icon} />
-                  </View>
-                )}
-              />
-            </View>
-            <View style={styles.show_wrapper}>
-              <Text style={styles.title}>{original_title}</Text>
-              <Text style={styles.overview}>{overview}</Text>
-            </View>
+          <View style={styles.heading_wrapper}>
+            <StandardLeftArrowIcon
+              arrowSize={styles.icon}
+              arrowWrapperStyles={styles.icon_wrapper}
+              onPress={() => navigation.goBack()}
+            />
+          </View>
+          <View style={styles.image_wrapper}>
+            <DefaultImage
+              imageUrl={poster_path}
+              imageStyle={styles.image}
+            />
+          </View>
+          <View style={styles.touchable_wrapper}>
+            <DefaultTouchable
+              onPress={() => navigation.navigate(ROUTES.VideoScreen)}
+              item={(
+                <View style={styles.play_icon_wrapper}>
+                  <PlayIcon {...styles.icon} />
+                </View>
+              )}
+            />
+          </View>
+          <View style={styles.show_wrapper}>
+            <Text style={styles.title}>{original_title}</Text>
+            <Text style={styles.overview}>{overview}</Text>
+          </View>
         </View>
       </ScrollView>
-    )
+    );
   }
 }
 
-DetailScreen.defaultProps = {
-  styles
-}
-
 DetailScreen.propTypes = {
-  styles: PropTypes.object,
-  navigation: PropTypes.object.isRequired
-}
+  navigation: PropTypes.object.isRequired,
+};
 
 export { DetailScreen };
-

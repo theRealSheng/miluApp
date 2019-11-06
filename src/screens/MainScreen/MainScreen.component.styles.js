@@ -21,14 +21,14 @@ export default StyleSheet.create({
 		color: COLORS.white,
 		borderBottomColor: COLORS.white,
 		borderBottomWidth: 2,
-		textAlign: 'center'
+		textAlign: 'center',
 	},
 	heading: {
 		fontSize: 20,
 		color: COLORS.medium_grey,
-		textAlign: 'center'
+		textAlign: 'center',
 	},
 	fill_space: {
-		 flex: 1
-	}
-})
+		 flex: 1,
+	},
+});

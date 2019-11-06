@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Text, View } from 'react-native';
 
 import styles from './MainShowCard.component.styles';
@@ -8,12 +9,19 @@ import PlayIcon from '../../assets/svg/play_arrow.svg';
 
 const renderGenres = (genre_ids) => (
   genre_ids.map((genre, index) => {
-    if (index === genre_ids.length -1) {
-      return <Text key={index} style={styles.single_genre}>   {genre.name}</Text>
-    } 
-      
-    return <Text key={index} style={styles.single_genre}>   {genre.name}   *</Text>
-  }
+    if (index === genre_ids.length - 1) {
+      return (
+        <Text key={`${genre.id}${genre.name}`} style={styles.single_genre}>
+          {`   ${genre.name}`}
+        </Text>
+      );
+    }
+    return (
+      <Text key={`${genre.id}${genre.name}`} style={styles.single_genre}>
+        {`   ${genre.name}   *`}
+      </Text>
+    );
+  },
 ));
 
 const renderPoster = (show) => (
@@ -26,8 +34,7 @@ const renderPoster = (show) => (
 );
 
 const MainShowCard = ({ show, onPress, OnPressPlay }) => {
-  if(!show) return null;
-  
+  if (!show) return null;
   return (
     <DefaultTouchable
       onPress={onPress}
@@ -46,10 +53,16 @@ const MainShowCard = ({ show, onPress, OnPressPlay }) => {
                 )}
               />
           </View>
-        </View> 
+        </View>
       )}
     />
   );
+};
+
+MainShowCard.propTypes = {
+  show: PropTypes.object,
+  onPress: PropTypes.func.isRequired,
+  OnPressPlay: PropTypes.func.isRequired,
 };
 
 export { MainShowCard };

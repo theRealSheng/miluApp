@@ -4,11 +4,11 @@ import { COLORS } from '../../constants';
 
 export default StyleSheet.create({
   single_genre: {
-    marginRight: 15
+    marginRight: 15,
   },
   image: {
     flex: 1,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   genres: {
     width: '100%',
@@ -19,21 +19,21 @@ export default StyleSheet.create({
   },
   container: {
     width: SETTINGS.W_Width,
-    height: SETTINGS.W_Height * .5,
+    height: SETTINGS.W_Height * 0.5,
     paddingLeft: 15,
     paddingRight: 15,
   },
   card: {
     alignItems: 'center',
-    flex: 1
-  },  
+    flex: 1,
+  },
   touchable_wrapper: {
     position: 'absolute',
     zIndex: 1000,
     width: 40,
     height: 40,
     top: '80%',
-    left: '80%'
+    left: '80%',
   },
   play_icon_wrapper: {
     width: 40,
@@ -42,10 +42,10 @@ export default StyleSheet.create({
     borderRadius: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 5
+    paddingLeft: 5,
   },
   icon: {
     width: 20,
-    height: 20
-  }
+    height: 20,
+  },
 });
