@@ -16,7 +16,7 @@ class SearchScreen extends Component {
     displayShowList: [],
     searchWord: '',
   }
-
+  
   componentDidMount() {
     // For simplicity, we just search the list from the movies and shows fetched
     const { uniqueShowList } = this.props;
@@ -42,7 +42,6 @@ class SearchScreen extends Component {
       
        return matchWord? show: null;
       })
-
     this.setState({ searchWord, displayShowList });
   }
 
@@ -50,14 +49,12 @@ class SearchScreen extends Component {
     if (displayShowList && displayShowList.length === 0) {
       return <Text style={styles.no_shows}>There is no shows with the keywords you have enterest</Text>;
     }
-
     return null;
   }
 
   render() {
     const { styles, navigation } = this.props;
     const { displayShowList, searchWord } = this.state;
-
     return (
       <View style={styles.container}>
         <SearchHeader

@@ -3,6 +3,8 @@ import { Text, View } from 'react-native';
 
 import styles from './MainShowCard.component.styles';
 import { DefaultImage } from '../DefaultImage';
+import { DefaultTouchable } from '../DefaultTouchable';
+import PlayIcon from '../../assets/svg/play_arrow.svg';
 
 const renderGenres = (genre_ids) => (
   genre_ids.map((genre, index) => {
@@ -23,15 +25,30 @@ const renderPoster = (show) => (
   </View>
 );
 
-const MainShowCard = ({ show }) => {
+const MainShowCard = ({ show, onPress, OnPressPlay }) => {
   if(!show) return null;
   
   return (
-  <View style={styles.container}>
-    <View style={styles.card}>
-      {renderPoster(show)}
-    </View>
-  </View> 
+    <DefaultTouchable
+      onPress={onPress}
+      item={(
+        <View style={styles.container}>
+          <View style={styles.card}>
+            {renderPoster(show)}
+          </View>
+          <View style={styles.touchable_wrapper}>
+              <DefaultTouchable
+                onPress={OnPressPlay}
+                item={(
+                  <View style={styles.play_icon_wrapper}>
+                    <PlayIcon {...styles.icon} />
+                  </View>
+                )}
+              />
+          </View>
+        </View> 
+      )}
+    />
   );
 };
 

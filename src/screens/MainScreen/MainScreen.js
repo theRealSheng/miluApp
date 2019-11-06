@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import PropTypes from 'prop-types';
+import { ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import RNLocky from "react-native-scroll-locky";
 import Orientation from 'react-native-orientation-locker';
 
+import styles from './MainScreen.component.styles';
 import { SETTINGS } from '../../utils';
-import { DIMENSIONS, ROUTES, STRINGS, COLORS } from '../../constants';
+import { DIMENSIONS, ROUTES, STRINGS } from '../../constants';
 import { 
 	Carousel,
 	DefaultTouchable,
@@ -24,12 +26,11 @@ class MainScreen extends Component {
 			showHash: {},
 			showList: []
 		}
-
     this.directionLockPanHandler = new RNLocky(
       RNLocky.Direction.VERTICAL
 		);
 	}
-	
+
 	componentDidMount() {
 		this.props.fetchMoviesRequested();
     Orientation.lockToPortrait();
@@ -44,13 +45,13 @@ class MainScreen extends Component {
 			return this.changeDisplay(STRINGS.Movies)
 		}
 
-		if (prevProps.movies !== movies || prevProps.tvs !== tvs) {
-			return this.changeDisplay(STRINGS.Movies)
+		if (prevProps !== this.props) {
+			return true;
 		}
 
-		return;
+		return false;
 	}
-	
+
 	renderListByGenre = () => {
 		const { navigation } = this.props;
 		const { showList } = this.state;
@@ -99,7 +100,7 @@ class MainScreen extends Component {
 			})
 		} 
 	}
-	
+
 	renderHeading = () => {
 		const { display } = this.state;
 		const movieStyle = display === STRINGS.Movies? styles.highlight_heading : styles.heading;
@@ -125,9 +126,9 @@ class MainScreen extends Component {
 			</View>
 		)
 	}
-
+	
 	renderView = () => {
-		const { error, loading } = this.props;
+		const { error, loading, navigation } = this.props;
 		const { showHash, showList } = this.state;
 
 		if (error) {
@@ -155,7 +156,11 @@ class MainScreen extends Component {
 
 		return (
 			<View style={styles.fill_space}>
-				<MainShowCard show={mostPopularShow}/>
+				<MainShowCard 
+					show={mostPopularShow} 
+					onPress={() => navigation.navigate(ROUTES.DetailScreen, { show: JSON.stringify(showList.popular[0]) })}
+					OnPressPlay={() => navigation.navigate(ROUTES.VideoScreen)}
+				/>
 				{this.renderHeading()}
 				{this.renderListByGenre()}
       </View>
@@ -174,37 +179,18 @@ class MainScreen extends Component {
 	}
 }
 
-const styles = StyleSheet.create({
-	heading_container: {
-		marginTop: 10,
-		marginBottom: 10,
-		paddingLeft: 50,
-		paddingRight: 50,
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		width: '100%',
-		height: 40,
-	},
-	header_section: {
-		flex: 1,
-	},
-	highlight_heading: {
-		fontSize: 20,
-		color: COLORS.white,
-		borderBottomColor: COLORS.white,
-		borderBottomWidth: 2,
-		textAlign: 'center'
-	},
-	heading: {
-		fontSize: 20,
-		color: COLORS.medium_grey,
-		textAlign: 'center'
-	},
-	fill_space: {
-		 flex: 1
-	}
-})
+MainScreen.defaultProps = {
+	styles
+}
+
+MainScreen.propTypes = {
+	movies: PropTypes.object.isRequired,
+	tvs: PropTypes.object.isRequired,
+	genresMoviesHash: PropTypes.object.isRequired,
+	genresTvsHash: PropTypes.object.isRequired,
+	loading: PropTypes.boolean,
+	error: PropTypes.string,
+}
 
 const mapStateToProps = (state) => {
 	return {
@@ -212,7 +198,7 @@ const mapStateToProps = (state) => {
 		tvs: state.tvs.tvListByGenres,
 		genresMoviesHash: state.movies.genresMoviesHash,
 		genresTvsHash: state.tvs.genresTvHash,
-		loading: state.movies.loading || state.tvs.loading,
+		loading: (state.movies.loading || state.tvs.loading),
 		error: state.movies.error || state.tvs.error,
 	}
 }

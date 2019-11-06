@@ -18,10 +18,14 @@ const MainNavigator = createBottomTabNavigator({
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
+      const { routes } = navigation.state;
+      let tabBarVisible = checkRouteVisibility(routes);
+
       const tabBarIcon = ({ focused }) => <NavigationIcon active={focused} navigation={navigation} />;
       const tabBarLabel = ({ focused }) => <NavigationLabel active={focused} navigation={navigation} />;
 
       return {
+        tabBarVisible,
         tabBarIcon,
         tabBarLabel,
       };
@@ -39,6 +43,14 @@ const MainNavigator = createBottomTabNavigator({
     }
   }
 );
+
+const checkRouteVisibility = (routes) => {
+  if (routes[routes.length - 1].routeName === ROUTES.VideoScreen) {
+    return false;
+  } else {
+    return true;
+  }
+};
 
 const AppNavigator = createAppContainer(MainNavigator);
 

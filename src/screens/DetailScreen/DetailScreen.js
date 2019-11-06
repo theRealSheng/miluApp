@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ScrollView, Text, View } from 'react-native';
 
 import styles from './DetailScreen.component.styles';
+import { ROUTES } from '../../constants';
 import { 
   DefaultImage, 
   DefaultTouchable,
@@ -55,7 +56,7 @@ class DetailScreen extends Component {
             </View>
             <View style={styles.touchable_wrapper}>
               <DefaultTouchable
-                onPress={() => console.log('navigate to video')}
+                onPress={() => navigation.navigate(ROUTES.VideoScreen)}
                 item={(
                   <View style={styles.play_icon_wrapper}>
                     <PlayIcon {...styles.icon} />
