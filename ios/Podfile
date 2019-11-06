@@ -34,6 +34,14 @@ target 'miluApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
+
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'miluAppTests' do
     inherit! :search_paths
     # Pods for testing
