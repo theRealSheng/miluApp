@@ -10,9 +10,9 @@ import SearchScreenStack from './SearchScreenStack';
 const MainNavigator = createBottomTabNavigator({
   [ROUTES.Home]: HomeScreenStack,
   [ROUTES.Search]: SearchScreenStack,
-  [ROUTES.ComingSoon]: HomeScreenStack, // repeted on purpose
-  [ROUTES.Download]: HomeScreenStack, // repeted on purpose
-  [ROUTES.More]: HomeScreenStack, // repeted on purpose
+  [ROUTES.ComingSoon]: HomeScreenStack, // repeated on purpose
+  [ROUTES.Download]: HomeScreenStack, // repeated on purpose
+  [ROUTES.More]: HomeScreenStack, // repeated on purpose
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
