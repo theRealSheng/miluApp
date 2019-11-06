@@ -1,12 +1,4 @@
 
-### Error Handler
-RN >= 0.50 -  watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && npm cache clean && npm install && npm start -- --reset-cache
-
-npm >= 5 - watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache
-
-Windows - del %appdata%\Temp\react-native-* & cd android & gradlew clean & cd .. & del node_modules/ & npm cache clean --force & npm install & npm start -- --reset-cache
-
-
 ### Preparing (Instructions are given for mac OS)
 Please run command npm install at the root folder
 
@@ -29,9 +21,14 @@ With the terminal, from rootfolder:
 
 To Run on IOS, from rootfolder, access the ios folder, and open file .xcworkspace
 
-Click play on Top left side once you have install the emulators or physical decide as instructed above.
+### Error Handler
+RN >= 0.50 -  watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && npm cache clean && npm install && npm start -- --reset-cache
 
-  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@"miluApp"
-                                            initialProperties:nil];
+npm >= 5 - watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache
+
+Windows - del %appdata%\Temp\react-native-* & cd android & gradlew clean & cd .. & del node_modules/ & npm cache clean --force & npm install & npm start -- --reset-cache
+
+### Please note
+ - Bottom navigation tabs 3,4,and 5 are reproducing is the same navigation stack as the home tab.
+ - Please run app without debbuger or it might slow the app.
+ - Video has basic controls. In Iphone, you will not be able to exit until the video is finished.
